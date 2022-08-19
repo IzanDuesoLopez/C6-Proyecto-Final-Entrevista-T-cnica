@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="HR_Users")
-public class HR_Users {
+public class HR_User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class HR_Users {
 	private List<Position> position;
 	
 	// Default constructor
-	public HR_Users() {
+	public HR_User() {
 		
 	}
 
@@ -39,7 +39,7 @@ public class HR_Users {
 	 * @param username
 	 * @param position
 	 */
-	public HR_Users(int id, String username, List<Position> position) {
+	public HR_User(int id, String username, List<Position> position) {
 		this.id = id;
 		this.username = username;
 		this.position = position;

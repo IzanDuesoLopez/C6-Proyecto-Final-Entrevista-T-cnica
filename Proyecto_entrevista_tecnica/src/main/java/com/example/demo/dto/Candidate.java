@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,53 +7,52 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Positions")
-public class Position {
+@Table(name="candidates")
+public class Candidate {
 
 	// Entity variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="title")
-	private String title;
-	@Column(name="description")
-	private String description;
+	@Column(name="name")
+	private String name;
+	@Column(name="surname")
+	private String surname;
 	
 	@OneToMany
-	@JoinColumn(name="id_position")
+	@JoinColumn(name="id_candidate")
 	private List<CandidatePosition> candidatePosition;
 	
-	@ManyToOne
-	@JoinColumn(name="id_HR_Users")
-	HR_User hr_Users;
+	@OneToMany
+	@JoinColumn(name="id_candidate")
+	private List<CandidateSkill> candidateSkill;
 	
 	// Default constructor
-	public Position() {
+	public Candidate() {
 		
 	}
 
 	/**
 	 * Constructor with full params
 	 * @param id
-	 * @param title
-	 * @param description
+	 * @param name
+	 * @param surname
 	 * @param candidatePosition
-	 * @param hr_Users
+	 * @param candidateSkill
 	 */
-	public Position(int id, String title, String description, List<CandidatePosition> candidatePosition,
-			HR_User hr_Users) {
+	public Candidate(int id, String name, String surname, List<CandidatePosition> candidatePosition,
+			List<CandidateSkill> candidateSkill) {
 		this.id = id;
-		this.title = title;
-		this.description = description;
+		this.name = name;
+		this.surname = surname;
 		this.candidatePosition = candidatePosition;
-		this.hr_Users = hr_Users;
+		this.candidateSkill = candidateSkill;
 	}
 
 	/**
@@ -73,31 +70,31 @@ public class Position {
 	}
 
 	/**
-	 * @return the title
+	 * @return the name
 	 */
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param name the name to set
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the description
+	 * @return the surname
 	 */
-	public String getDescription() {
-		return description;
+	public String getSurname() {
+		return surname;
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param surname the surname to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	/**
@@ -117,22 +114,23 @@ public class Position {
 	}
 
 	/**
-	 * @return the hr_Users
+	 * @return the candidateSkill
 	 */
-	public HR_User getHr_Users() {
-		return hr_Users;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidateSkill")
+	public List<CandidateSkill> getCandidateSkill() {
+		return candidateSkill;
 	}
 
 	/**
-	 * @param hr_Users the hr_Users to set
+	 * @param candidateSkill the candidateSkill to set
 	 */
-	public void setHr_Users(HR_User hr_Users) {
-		this.hr_Users = hr_Users;
+	public void setCandidateSkill(List<CandidateSkill> candidateSkill) {
+		this.candidateSkill = candidateSkill;
 	}
 
 	@Override
 	public String toString() {
-		return "Position [id=" + id + ", title=" + title + ", description=" + description + ", hr_Users=" + hr_Users
-				+ "]";
+		return "Candidate [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
 }
