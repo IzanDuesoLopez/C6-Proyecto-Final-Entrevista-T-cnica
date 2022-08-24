@@ -34,7 +34,7 @@ public class Position {
 	
 	@ManyToOne
 	@JoinColumn(name="id_HR_Users")
-	HR_User hr_Users;
+	private HR_User hr_Users;
 	
 	// Default constructor
 	public Position() {

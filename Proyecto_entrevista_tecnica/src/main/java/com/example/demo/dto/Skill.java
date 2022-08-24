@@ -15,45 +15,33 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Candidates")
-public class Candidate {
+@Table(name="Skills")
+public class Skill {
 
-	// Entity variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="name")
 	private String name;
-	@Column(name="surname")
-	private String surname;
 	
 	@OneToMany
-	@JoinColumn(name="id_candidate")
-	private List<CandidatePosition> candidatePosition;
-	
-	@OneToMany
-	@JoinColumn(name="id_candidate")
+	@JoinColumn(name="id_skill")
 	private List<CandidateSkill> candidateSkill;
 	
 	// Default constructor
-	public Candidate() {
+	public Skill() {
 		
 	}
 
 	/**
-	 * Constructor with full params
+	 * Constructor with parameters
 	 * @param id
 	 * @param name
-	 * @param surname
-	 * @param candidatePosition
 	 * @param candidateSkill
 	 */
-	public Candidate(int id, String name, String surname, List<CandidatePosition> candidatePosition,
-			List<CandidateSkill> candidateSkill) {
+	public Skill(int id, String name, List<CandidateSkill> candidateSkill) {
 		this.id = id;
 		this.name = name;
-		this.surname = surname;
-		this.candidatePosition = candidatePosition;
 		this.candidateSkill = candidateSkill;
 	}
 
@@ -86,36 +74,6 @@ public class Candidate {
 	}
 
 	/**
-	 * @return the surname
-	 */
-	public String getSurname() {
-		return surname;
-	}
-
-	/**
-	 * @param surname the surname to set
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	/**
-	 * @return the candidatePosition
-	 */
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidatePosition")
-	public List<CandidatePosition> getCandidatePosition() {
-		return candidatePosition;
-	}
-
-	/**
-	 * @param candidatePosition the candidatePosition to set
-	 */
-	public void setCandidatePosition(List<CandidatePosition> candidatePosition) {
-		this.candidatePosition = candidatePosition;
-	}
-
-	/**
 	 * @return the candidateSkill
 	 */
 	@JsonIgnore
@@ -133,6 +91,7 @@ public class Candidate {
 
 	@Override
 	public String toString() {
-		return "Candidate [id=" + id + ", name=" + name + ", surname=" + surname + "]";
+		return "Skill [id=" + id + ", name=" + name + "]";
 	}
+	
 }

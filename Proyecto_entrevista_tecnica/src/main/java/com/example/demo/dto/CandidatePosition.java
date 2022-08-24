@@ -30,11 +30,11 @@ public class CandidatePosition {
 	
 	@ManyToOne
 	@JoinColumn(name="id_candidate")
-	Candidate candidate;
+	private Candidate candidate;
 	
 	@ManyToOne
 	@JoinColumn(name="id_position")
-	Position position;
+	private Position position;
 	
 	// Default constructor
 	public CandidatePosition() {
