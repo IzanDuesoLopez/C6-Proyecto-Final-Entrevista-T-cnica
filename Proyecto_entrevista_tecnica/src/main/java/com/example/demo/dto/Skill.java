@@ -26,7 +26,7 @@ public class Skill {
 	
 	@OneToMany
 	@JoinColumn(name="id_skill")
-	private List<CandidateSkill> candidateSkill;
+	private List<Candidate_skill> candidateSkill;
 	
 	// Default constructor
 	public Skill() {
@@ -39,7 +39,7 @@ public class Skill {
 	 * @param name
 	 * @param candidateSkill
 	 */
-	public Skill(int id, String name, List<CandidateSkill> candidateSkill) {
+	public Skill(int id, String name, List<Candidate_skill> candidateSkill) {
 		this.id = id;
 		this.name = name;
 		this.candidateSkill = candidateSkill;
@@ -78,14 +78,14 @@ public class Skill {
 	 */
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidateSkill")
-	public List<CandidateSkill> getCandidateSkill() {
+	public List<Candidate_skill> getCandidateSkill() {
 		return candidateSkill;
 	}
 
 	/**
 	 * @param candidateSkill the candidateSkill to set
 	 */
-	public void setCandidateSkill(List<CandidateSkill> candidateSkill) {
+	public void setCandidateSkill(List<Candidate_skill> candidateSkill) {
 		this.candidateSkill = candidateSkill;
 	}
 

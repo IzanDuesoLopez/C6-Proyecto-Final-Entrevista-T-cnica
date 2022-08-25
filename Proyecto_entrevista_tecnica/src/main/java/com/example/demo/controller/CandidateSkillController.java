@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.CandidateSkill;
+import com.example.demo.dto.Candidate_skill;
 import com.example.demo.service.CandidateSkillServiceImpl;
 
 @RestController
@@ -23,29 +23,29 @@ public class CandidateSkillController {
 	CandidateSkillServiceImpl candidateSkillServiceImpl;
 	
 	@GetMapping("/candidateSkills")
-	public List<CandidateSkill> listarCandidateSkills(){
+	public List<Candidate_skill> listarCandidateSkills(){
 		return candidateSkillServiceImpl.listarCandidateSkills();
 	}
 	
 	@PostMapping("/candidateSkills")
-	public CandidateSkill guardarCandidateSkill(@RequestBody CandidateSkill candidateSkill) {
+	public Candidate_skill guardarCandidateSkill(@RequestBody Candidate_skill candidateSkill) {
 		return candidateSkillServiceImpl.guardarCandidateSkill(candidateSkill);
 	}
 	
 	@GetMapping("/candidateSkills/{id}")
-	public CandidateSkill candidateSkillXID(@PathVariable(name="id") int id) {
+	public Candidate_skill candidateSkillXID(@PathVariable(name="id") int id) {
 		
-		CandidateSkill candidateSkill_xid= new CandidateSkill();
+		Candidate_skill candidateSkill_xid= new Candidate_skill();
 		candidateSkill_xid=candidateSkillServiceImpl.candidateSkillsXID(id);
 		System.out.println("CandidateSkill XID: "+candidateSkill_xid);
 		return candidateSkill_xid;
 	}
 
 	@PutMapping("/candidateSkills/{id}")
-	public CandidateSkill actualizarCandidateSkills(@PathVariable(name="id")int id,@RequestBody CandidateSkill candidateSkill) {
+	public Candidate_skill actualizarCandidateSkills(@PathVariable(name="id")int id,@RequestBody Candidate_skill candidateSkill) {
 		
-		CandidateSkill candidateSkill_seleccionado= new CandidateSkill();
-		CandidateSkill candidateSkill_actualizado= new CandidateSkill();
+		Candidate_skill candidateSkill_seleccionado= new Candidate_skill();
+		Candidate_skill candidateSkill_actualizado= new Candidate_skill();
 		
 		candidateSkill_seleccionado= candidateSkillServiceImpl.candidateSkillsXID(id);
 		candidateSkill_seleccionado.setValue(candidateSkill.getValue());

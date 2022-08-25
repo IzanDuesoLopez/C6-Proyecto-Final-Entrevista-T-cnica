@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ICandidateSkillDAO;
-import com.example.demo.dto.CandidateSkill;
+import com.example.demo.dto.Candidate_skill;
 
 @Service
 public class CandidateSkillServiceImpl implements ICandidateSkillService{
@@ -15,22 +15,22 @@ public class CandidateSkillServiceImpl implements ICandidateSkillService{
 	ICandidateSkillDAO iCandidateSkillDAO;
 	
 	@Override
-	public List<CandidateSkill> listarCandidateSkills() {
+	public List<Candidate_skill> listarCandidateSkills() {
 		return iCandidateSkillDAO.findAll();
 	}
 
 	@Override
-	public CandidateSkill guardarCandidateSkill(CandidateSkill candidateSkills) {
+	public Candidate_skill guardarCandidateSkill(Candidate_skill candidateSkills) {
 		return iCandidateSkillDAO.save(candidateSkills);
 	}
 
 	@Override
-	public CandidateSkill candidateSkillsXID(int id) {
+	public Candidate_skill candidateSkillsXID(int id) {
 		return iCandidateSkillDAO.findById(id).get();
 	}
 
 	@Override
-	public CandidateSkill actualizarCandidateSkills(CandidateSkill candidateSkills) {
+	public Candidate_skill actualizarCandidateSkills(Candidate_skill candidateSkills) {
 		return iCandidateSkillDAO.save(candidateSkills);
 	}
 

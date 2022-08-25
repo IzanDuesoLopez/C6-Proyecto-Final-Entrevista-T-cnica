@@ -2,18 +2,18 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.dto.CandidateSkill;
+import com.example.demo.dto.Candidate_skill;
 
 public interface ICandidateSkillService {
 
 	//Metodos del CRUD
-	public List<CandidateSkill> listarCandidateSkills(); // Listar All 
+	public List<Candidate_skill> listarCandidateSkills(); // Listar All 
 	
-	public CandidateSkill guardarCandidateSkill(CandidateSkill candidateSkills);	// CREATE
+	public Candidate_skill guardarCandidateSkill(Candidate_skill candidateSkills);	// CREATE
 	
-	public CandidateSkill candidateSkillsXID(int id); // READ
+	public Candidate_skill candidateSkillsXID(int id); // READ
 	
-	public CandidateSkill actualizarCandidateSkills(CandidateSkill candidateSkills); // UPDATE
+	public Candidate_skill actualizarCandidateSkills(Candidate_skill candidateSkills); // UPDATE
 	
 	public void eliminarCandidateSkills(int id); // DELETE
 }

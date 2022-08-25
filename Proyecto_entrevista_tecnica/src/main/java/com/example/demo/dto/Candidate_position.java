@@ -12,19 +12,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CandidatePositions")
-public class CandidatePosition {
+@Table(name="Candidate_positions")
+public class Candidate_position {
 
 	// Entity variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="registryDate")
-	private Date registryDate;
-	@Column(name="testDate")
-	private Date testDate;
-	@Column(name="completionDate")
-	private Date completionDate;
+	@Column(name="registry_date")
+	private Date registry_date;
+	@Column(name="test_date")
+	private Date test_date;
+	@Column(name="completion_date")
+	private Date completion_date;
 	@Column(name="result")
 	private float result;
 	
@@ -37,26 +37,26 @@ public class CandidatePosition {
 	private Position position;
 	
 	// Default constructor
-	public CandidatePosition() {
+	public Candidate_position() {
 		
 	}
 
 	/**
-	 * Constructor with full params
 	 * @param id
-	 * @param registryDate
-	 * @param testDate
-	 * @param completionDate
+	 * @param registry_date
+	 * @param test_date
+	 * @param completion_date
 	 * @param result
 	 * @param candidate
 	 * @param position
 	 */
-	public CandidatePosition(int id, Date registryDate, Date testDate, Date completionDate, float result,
+	public Candidate_position(int id, Date registry_date, Date test_date, Date completion_date, float result,
 			Candidate candidate, Position position) {
+		super();
 		this.id = id;
-		this.registryDate = registryDate;
-		this.testDate = testDate;
-		this.completionDate = completionDate;
+		this.registry_date = registry_date;
+		this.test_date = test_date;
+		this.completion_date = completion_date;
 		this.result = result;
 		this.candidate = candidate;
 		this.position = position;
@@ -77,45 +77,45 @@ public class CandidatePosition {
 	}
 
 	/**
-	 * @return the registryDate
+	 * @return the registry_date
 	 */
-	public Date getRegistryDate() {
-		return registryDate;
+	public Date getRegistry_date() {
+		return registry_date;
 	}
 
 	/**
-	 * @param registryDate the registryDate to set
+	 * @param registry_date the registry_date to set
 	 */
-	public void setRegistryDate(Date registryDate) {
-		this.registryDate = registryDate;
+	public void setRegistry_date(Date registry_date) {
+		this.registry_date = registry_date;
 	}
 
 	/**
-	 * @return the testDate
+	 * @return the test_date
 	 */
-	public Date getTestDate() {
-		return testDate;
+	public Date getTest_date() {
+		return test_date;
 	}
 
 	/**
-	 * @param testDate the testDate to set
+	 * @param test_date the test_date to set
 	 */
-	public void setTestDate(Date testDate) {
-		this.testDate = testDate;
+	public void setTest_date(Date test_date) {
+		this.test_date = test_date;
 	}
 
 	/**
-	 * @return the completionDate
+	 * @return the completion_date
 	 */
-	public Date getCompletionDate() {
-		return completionDate;
+	public Date getCompletion_date() {
+		return completion_date;
 	}
 
 	/**
-	 * @param completionDate the completionDate to set
+	 * @param completion_date the completion_date to set
 	 */
-	public void setCompletionDate(Date completionDate) {
-		this.completionDate = completionDate;
+	public void setCompletion_date(Date completion_date) {
+		this.completion_date = completion_date;
 	}
 
 	/**
@@ -162,8 +162,10 @@ public class CandidatePosition {
 
 	@Override
 	public String toString() {
-		return "CandidatePosition [id=" + id + ", registryDate=" + registryDate + ", testDate=" + testDate
-				+ ", completionDate=" + completionDate + ", result=" + result + ", candidate=" + candidate
+		return "Candidate_position [id=" + id + ", registry_date=" + registry_date + ", test_date=" + test_date
+				+ ", completion_date=" + completion_date + ", result=" + result + ", candidate=" + candidate
 				+ ", position=" + position + "]";
 	}
+
+	
 }

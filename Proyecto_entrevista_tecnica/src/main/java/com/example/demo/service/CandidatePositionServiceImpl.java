@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ICandidatePositionDAO;
-import com.example.demo.dto.CandidatePosition;
+import com.example.demo.dto.Candidate_position;
 
 @Service
 public class CandidatePositionServiceImpl implements ICandidatePositionService{
@@ -15,22 +15,22 @@ public class CandidatePositionServiceImpl implements ICandidatePositionService{
 	ICandidatePositionDAO iCandidatePositionDAO;
 	
 	@Override
-	public List<CandidatePosition> listarCandidatePositions() {
+	public List<Candidate_position> listarCandidatePositions() {
 		return iCandidatePositionDAO.findAll();
 	}
 
 	@Override
-	public CandidatePosition guardarCandidatePosition(CandidatePosition candidatePositions) {
+	public Candidate_position guardarCandidatePosition(Candidate_position candidatePositions) {
 		return iCandidatePositionDAO.save(candidatePositions);
 	}
 
 	@Override
-	public CandidatePosition candidatePositionsXID(int id) {
+	public Candidate_position candidatePositionsXID(int id) {
 		return iCandidatePositionDAO.findById(id).get();
 	}
 
 	@Override
-	public CandidatePosition actualizarCandidatePositions(CandidatePosition candidatePositions) {
+	public Candidate_position actualizarCandidatePositions(Candidate_position candidatePositions) {
 		return iCandidatePositionDAO.save(candidatePositions);
 	}
 

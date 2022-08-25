@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CandidateSkills")
-public class CandidateSkill {
+@Table(name="Candidate_skills")
+public class Candidate_skill {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class CandidateSkill {
 	private Candidate candidate;
 	
 	// Default constructor
-	public CandidateSkill() {
+	public Candidate_skill() {
 		
 	}
 
@@ -42,7 +42,7 @@ public class CandidateSkill {
 	 * @param skill
 	 * @param candidate
 	 */
-	public CandidateSkill(int id, float value, String notes, Skill skill, Candidate candidate) {
+	public Candidate_skill(int id, float value, String notes, Skill skill, Candidate candidate) {
 		this.id = id;
 		this.value = value;
 		this.notes = notes;

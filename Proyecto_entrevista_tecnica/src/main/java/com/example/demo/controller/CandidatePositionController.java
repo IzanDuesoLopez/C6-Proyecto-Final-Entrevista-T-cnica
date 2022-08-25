@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.CandidatePosition;
+import com.example.demo.dto.Candidate_position;
 import com.example.demo.service.CandidatePositionServiceImpl;
 
 @RestController
@@ -23,34 +23,34 @@ public class CandidatePositionController {
 	CandidatePositionServiceImpl candidatePositionServiceImpl;
 	
 	@GetMapping("/candidatePositions")
-	public List<CandidatePosition> listarCandidatePositions(){
+	public List<Candidate_position> listarCandidatePositions(){
 		return candidatePositionServiceImpl.listarCandidatePositions();
 	}
 	
 	@PostMapping("/candidatePositions")
-	public CandidatePosition guardarCandidatePosition(@RequestBody CandidatePosition candidatePosition) {
+	public Candidate_position guardarCandidatePosition(@RequestBody Candidate_position candidatePosition) {
 		return candidatePositionServiceImpl.guardarCandidatePosition(candidatePosition);
 	}
 	
 	@GetMapping("/candidatePositions/{id}")
-	public CandidatePosition candidatePositionXID(@PathVariable(name="id") int id) {
+	public Candidate_position candidatePositionXID(@PathVariable(name="id") int id) {
 		
-		CandidatePosition candidatePosition_xid= new CandidatePosition();
+		Candidate_position candidatePosition_xid= new Candidate_position();
 		candidatePosition_xid=candidatePositionServiceImpl.candidatePositionsXID(id);
 		System.out.println("CandidatePosition XID: "+candidatePosition_xid);
 		return candidatePosition_xid;
 	}
 
 	@PutMapping("/candidatePositions/{id}")
-	public CandidatePosition actualizarCandidatePositions(@PathVariable(name="id")int id,@RequestBody CandidatePosition candidatePosition) {
+	public Candidate_position actualizarCandidatePositions(@PathVariable(name="id")int id,@RequestBody Candidate_position candidatePosition) {
 		
-		CandidatePosition candidatePosition_seleccionado= new CandidatePosition();
-		CandidatePosition candidatePosition_actualizado= new CandidatePosition();
+		Candidate_position candidatePosition_seleccionado= new Candidate_position();
+		Candidate_position candidatePosition_actualizado= new Candidate_position();
 		
 		candidatePosition_seleccionado= candidatePositionServiceImpl.candidatePositionsXID(id);
-		candidatePosition_seleccionado.setRegistryDate(candidatePosition.getRegistryDate());
-		candidatePosition_seleccionado.setTestDate(candidatePosition.getTestDate());
-		candidatePosition_seleccionado.setCompletionDate(candidatePosition.getCompletionDate());
+		candidatePosition_seleccionado.setRegistry_date(candidatePosition.getRegistry_date());
+		candidatePosition_seleccionado.setTest_date(candidatePosition.getTest_date());
+		candidatePosition_seleccionado.setCompletion_date(candidatePosition.getCompletion_date());
 		candidatePosition_seleccionado.setResult(candidatePosition.getResult());
 		candidatePosition_seleccionado.setCandidate(candidatePosition.getCandidate());
 		candidatePosition_seleccionado.setPosition(candidatePosition.getPosition());

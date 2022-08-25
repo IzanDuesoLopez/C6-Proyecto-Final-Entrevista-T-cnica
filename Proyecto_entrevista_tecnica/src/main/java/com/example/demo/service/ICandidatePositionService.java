@@ -2,18 +2,18 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.dto.CandidatePosition;
+import com.example.demo.dto.Candidate_position;
 
 public interface ICandidatePositionService {
 
 	//Metodos del CRUD
-	public List<CandidatePosition> listarCandidatePositions(); // Listar All 
+	public List<Candidate_position> listarCandidatePositions(); // Listar All 
 	
-	public CandidatePosition guardarCandidatePosition(CandidatePosition candidatePositions);	// CREATE
+	public Candidate_position guardarCandidatePosition(Candidate_position candidatePositions);	// CREATE
 	
-	public CandidatePosition candidatePositionsXID(int id); // READ
+	public Candidate_position candidatePositionsXID(int id); // READ
 	
-	public CandidatePosition actualizarCandidatePositions(CandidatePosition candidatePositions); // UPDATE
+	public Candidate_position actualizarCandidatePositions(Candidate_position candidatePositions); // UPDATE
 	
 	public void eliminarCandidatePositions(int id); // DELETE
 }

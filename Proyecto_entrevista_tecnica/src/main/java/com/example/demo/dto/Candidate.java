@@ -29,11 +29,11 @@ public class Candidate {
 	
 	@OneToMany
 	@JoinColumn(name="id_candidate")
-	private List<CandidatePosition> candidatePosition;
+	private List<Candidate_position> candidatePosition;
 	
 	@OneToMany
 	@JoinColumn(name="id_candidate")
-	private List<CandidateSkill> candidateSkill;
+	private List<Candidate_skill> candidateSkill;
 	
 	// Default constructor
 	public Candidate() {
@@ -48,8 +48,8 @@ public class Candidate {
 	 * @param candidatePosition
 	 * @param candidateSkill
 	 */
-	public Candidate(int id, String name, String surname, List<CandidatePosition> candidatePosition,
-			List<CandidateSkill> candidateSkill) {
+	public Candidate(int id, String name, String surname, List<Candidate_position> candidatePosition,
+			List<Candidate_skill> candidateSkill) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -104,14 +104,14 @@ public class Candidate {
 	 */
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidatePosition")
-	public List<CandidatePosition> getCandidatePosition() {
+	public List<Candidate_position> getCandidatePosition() {
 		return candidatePosition;
 	}
 
 	/**
 	 * @param candidatePosition the candidatePosition to set
 	 */
-	public void setCandidatePosition(List<CandidatePosition> candidatePosition) {
+	public void setCandidatePosition(List<Candidate_position> candidatePosition) {
 		this.candidatePosition = candidatePosition;
 	}
 
@@ -120,14 +120,14 @@ public class Candidate {
 	 */
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidateSkill")
-	public List<CandidateSkill> getCandidateSkill() {
+	public List<Candidate_skill> getCandidateSkill() {
 		return candidateSkill;
 	}
 
 	/**
 	 * @param candidateSkill the candidateSkill to set
 	 */
-	public void setCandidateSkill(List<CandidateSkill> candidateSkill) {
+	public void setCandidateSkill(List<Candidate_skill> candidateSkill) {
 		this.candidateSkill = candidateSkill;
 	}
 

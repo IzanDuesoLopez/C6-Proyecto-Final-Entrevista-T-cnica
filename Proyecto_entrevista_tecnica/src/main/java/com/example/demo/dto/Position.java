@@ -30,7 +30,7 @@ public class Position {
 	
 	@OneToMany
 	@JoinColumn(name="id_position")
-	private List<CandidatePosition> candidatePosition;
+	private List<Candidate_position> candidatePosition;
 	
 	@ManyToOne
 	@JoinColumn(name="id_HR_Users")
@@ -49,7 +49,7 @@ public class Position {
 	 * @param candidatePosition
 	 * @param hr_Users
 	 */
-	public Position(int id, String title, String description, List<CandidatePosition> candidatePosition,
+	public Position(int id, String title, String description, List<Candidate_position> candidatePosition,
 			HR_User hr_Users) {
 		this.id = id;
 		this.title = title;
@@ -105,14 +105,14 @@ public class Position {
 	 */
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "CandidatePosition")
-	public List<CandidatePosition> getCandidatePosition() {
+	public List<Candidate_position> getCandidatePosition() {
 		return candidatePosition;
 	}
 
 	/**
 	 * @param candidatePosition the candidatePosition to set
 	 */
-	public void setCandidatePosition(List<CandidatePosition> candidatePosition) {
+	public void setCandidatePosition(List<Candidate_position> candidatePosition) {
 		this.candidatePosition = candidatePosition;
 	}
 
