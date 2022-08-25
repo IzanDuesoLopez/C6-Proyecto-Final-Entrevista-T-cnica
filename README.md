@@ -1,1 +1,1 @@
-# C6-Proyecto-Final-Entrevista-T-cnica
+# C6-Proyecto-Final-Entrevista-Tecnica
