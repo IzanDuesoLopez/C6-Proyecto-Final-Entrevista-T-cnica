@@ -40,4 +40,9 @@ public class CandidateServiceImpl implements ICandidateService{
 		
 	}
 
+	@Override
+	public List<Candidate> findByName(String name) {
+		return iCandidateDAO.findByName(name);
+	}
+
 }

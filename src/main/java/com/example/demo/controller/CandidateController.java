@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.service.CandidateServiceImpl;
 
 import com.example.demo.dto.Candidate;
+import com.example.demo.dto.HR_User;
 
 @RestController
 @RequestMapping("/api")
@@ -26,6 +27,11 @@ public class CandidateController {
 	@GetMapping("/candidates")
 	public List<Candidate> listarCandidates(){
 		return candidateServiceImpl.listarCandidates();
+	}
+	
+	@GetMapping("/candidates/name/{name}")
+	public List<Candidate> listCandidatesByName(@PathVariable(name="name") String name){
+		return candidateServiceImpl.findByName(name);
 	}
 	
 	@PostMapping("/candidates")

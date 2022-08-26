@@ -16,4 +16,6 @@ public interface IHR_UserService {
 	public HR_User actualizarHR_Users(HR_User hr_users); // UPDATE
 	
 	public void eliminarHR_Users(int id); // DELETE
+	
+	public List<HR_User> findByUsername(String username); // Find by username
 }

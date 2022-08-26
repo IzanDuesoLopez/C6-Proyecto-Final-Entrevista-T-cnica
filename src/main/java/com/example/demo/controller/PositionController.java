@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.HR_User;
 import com.example.demo.dto.Position;
 import com.example.demo.service.PositionServiceImpl;
 
@@ -25,6 +26,11 @@ public class PositionController {
 	@GetMapping("/positions")
 	public List<Position> listarPositions(){
 		return positionServiceImpl.listarPositions();
+	}
+	
+	@GetMapping("/positions/title/{title}")
+	public List<Position> listPositionByTitle(@PathVariable(name="title") String title){
+		return positionServiceImpl.findByTitle(title);
 	}
 	
 	@PostMapping("/positions")

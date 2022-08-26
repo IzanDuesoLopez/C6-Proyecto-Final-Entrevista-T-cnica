@@ -15,4 +15,6 @@ public interface IPositionService {
 	public Position actualizarPositions(Position positions); // UPDATE
 	
 	public void eliminarPositions(int id); // DELETE
+	
+	public List<Position> findByTitle(String title); // Find by title
 }

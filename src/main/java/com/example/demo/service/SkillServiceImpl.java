@@ -39,4 +39,9 @@ public class SkillServiceImpl implements ISkillService{
 		iSkillDAO.deleteById(id);
 	}
 
+	@Override
+	public List<Skill> findByName(String name) {
+		return iSkillDAO.findByName(name);
+	}
+
 }

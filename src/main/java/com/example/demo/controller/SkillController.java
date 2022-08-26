@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.HR_User;
 import com.example.demo.dto.Skill;
 import com.example.demo.service.SkillServiceImpl;
 
@@ -25,6 +26,11 @@ public class SkillController {
 	@GetMapping("/skills")
 	public List<Skill> listarSkills(){
 		return skillServiceImpl.listarSkills();
+	}
+	
+	@GetMapping("/skills/name/{name}")
+	public List<Skill> listSkillsByName(@PathVariable(name="name") String name){
+		return skillServiceImpl.findByName(name);
 	}
 	
 	@PostMapping("/skills")

@@ -16,4 +16,6 @@ public interface ICandidateService {
 	public Candidate actualizarCandidates(Candidate candidates); // UPDATE
 	
 	public void eliminarCandidates(int id); // DELETE
+	
+	public List<Candidate> findByName(String name); // Find by name
 }
