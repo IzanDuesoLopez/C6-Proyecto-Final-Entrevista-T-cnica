@@ -39,4 +39,9 @@ public class HR_UserServiceImpl implements IHR_UserService{
 		iHR_UserDAO.deleteById(id);
 	}
 
+	@Override
+	public List<HR_User> findByUsername(String username) {
+		return iHR_UserDAO.findByUsername(username);
+	}
+
 }

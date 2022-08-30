@@ -27,6 +27,11 @@ public class HR_UserController {
 		return hr_userServiceImpl.listarHR_Users();
 	}
 	
+	@GetMapping("/hr_users/username/{username}")
+	public List<HR_User> listUsersByName(@PathVariable(name="username") String username){
+		return hr_userServiceImpl.findByUsername(username);
+	}
+	
 	@PostMapping("/hr_users")
 	public HR_User guardarHR_User(@RequestBody HR_User hr_user) {
 		return hr_userServiceImpl.guardarHR_User(hr_user);

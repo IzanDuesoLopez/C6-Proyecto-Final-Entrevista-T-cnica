@@ -39,4 +39,9 @@ public class PositionServiceImpl implements IPositionService{
 		iPositionDAO.deleteById(id);
 	}
 
+	@Override
+	public List<Position> findByTitle(String title) {
+		return iPositionDAO.findByTitle(title);
+	}
+
 }

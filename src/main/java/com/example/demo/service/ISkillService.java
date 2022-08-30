@@ -16,4 +16,6 @@ public interface ISkillService {
 	public Skill actualizarSkills(Skill skills); // UPDATE
 	
 	public void eliminarSkills(int id); // DELETE
+	
+	public List<Skill> findByName(String name); // Find by name
 }

@@ -9,5 +9,6 @@ import com.example.demo.dto.Candidate;
 public interface ICandidateDAO extends JpaRepository<Candidate, Integer>{
 
 	public List<Candidate> findByName(String name);
+	public Candidate findByUsername(String username);
 	
 }
