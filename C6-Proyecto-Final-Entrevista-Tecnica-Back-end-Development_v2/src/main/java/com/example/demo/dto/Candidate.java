@@ -26,6 +26,10 @@ public class Candidate {
 	private String name;
 	@Column(name="surname")
 	private String surname;
+	@Column(name="password")
+	private String password;
+	@Column(name="username")
+	private String username;
 	
 	@OneToMany
 	@JoinColumn(name="id_candidate")
@@ -41,18 +45,21 @@ public class Candidate {
 	}
 
 	/**
-	 * Constructor with full params
+	 * Constructor with parameters
 	 * @param id
 	 * @param name
 	 * @param surname
+	 * @param password
 	 * @param candidatePosition
 	 * @param candidateSkill
 	 */
-	public Candidate(int id, String name, String surname, List<Candidate_position> candidatePosition,
+	public Candidate(int id, String name, String surname, String password, List<Candidate_position> candidatePosition,
 			List<Candidate_skill> candidateSkill) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
+		this.password = password;
 		this.candidatePosition = candidatePosition;
 		this.candidateSkill = candidateSkill;
 	}
@@ -129,6 +136,37 @@ public class Candidate {
 	 */
 	public void setCandidateSkill(List<Candidate_skill> candidateSkill) {
 		this.candidateSkill = candidateSkill;
+	}
+	
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
+	
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
