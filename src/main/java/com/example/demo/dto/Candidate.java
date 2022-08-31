@@ -27,6 +27,7 @@ public class Candidate {
 	@Column(name="surname")
 	private String surname;
 	@Column(name="password")
+	@JsonIgnore
 	private String password;
 	@Column(name="username")
 	private String username;

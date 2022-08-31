@@ -3,12 +3,16 @@ package com.example.demo.service;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.parsing.EmptyReaderEventListener;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ICandidateDAO;
@@ -19,6 +23,9 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 
 	@Autowired
 	ICandidateDAO iCandidateDAO;
+	
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
 	
 	public CandidateServiceImpl(ICandidateDAO iCandidateDAO) {
 		this.iCandidateDAO = iCandidateDAO;
@@ -57,13 +64,20 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Candidate candidate = iCandidateDAO.findByUsername(username);
-		
-		if(candidate == null) {
-			throw new UsernameNotFoundException(username);
+
+		Candidate user = iCandidateDAO.findByUsername(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
-		
-		return new User(candidate.getUsername(), candidate.getPassword(), emptyList());
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				new ArrayList<>());
+	}
+
+	public Candidate save(Candidate user) {
+		Candidate newUser = new Candidate();
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		return iCandidateDAO.save(newUser);
 	}
 
 }
