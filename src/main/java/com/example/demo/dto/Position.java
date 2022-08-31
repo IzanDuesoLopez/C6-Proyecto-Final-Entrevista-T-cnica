@@ -34,7 +34,7 @@ public class Position {
 	
 	@ManyToOne
 	@JoinColumn(name="id_HR_Users")
-	private HR_User hr_Users;
+	private Candidate hr_Users;
 	
 	// Default constructor
 	public Position() {
@@ -50,7 +50,7 @@ public class Position {
 	 * @param hr_Users
 	 */
 	public Position(int id, String title, String description, List<Candidate_position> candidatePosition,
-			HR_User hr_Users) {
+			Candidate hr_Users) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -119,14 +119,14 @@ public class Position {
 	/**
 	 * @return the hr_Users
 	 */
-	public HR_User getHr_Users() {
+	public Candidate getHr_Users() {
 		return hr_Users;
 	}
 
 	/**
 	 * @param hr_Users the hr_Users to set
 	 */
-	public void setHr_Users(HR_User hr_Users) {
+	public void setHr_Users(Candidate hr_Users) {
 		this.hr_Users = hr_Users;
 	}
 

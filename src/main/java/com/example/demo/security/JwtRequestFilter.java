@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import static com.example.demo.security.Constants.TOKEN_BEARER_PREFIX;
+
 import com.example.demo.service.CandidateServiceImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;

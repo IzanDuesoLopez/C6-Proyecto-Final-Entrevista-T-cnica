@@ -40,6 +40,10 @@ public class Candidate {
 	@JoinColumn(name="id_candidate")
 	private List<Candidate_skill> candidateSkill;
 	
+	@OneToMany
+	@JoinColumn(name="id_HR_Users")
+	private List<Position> position;
+	
 	// Default constructor
 	public Candidate() {
 		
@@ -168,6 +172,22 @@ public class Candidate {
 	 */
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	/**
+	 * @return the position
+	 */
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Position")
+	public List<Position> getPosition() {
+		return position;
+	}
+
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(List<Position> position) {
+		this.position = position;
 	}
 
 	@Override

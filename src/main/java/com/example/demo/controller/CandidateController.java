@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.service.CandidateServiceImpl;
 
 import com.example.demo.dto.Candidate;
-import com.example.demo.dto.HR_User;
 
 @RestController
 @RequestMapping("/api")
@@ -57,6 +56,11 @@ public class CandidateController {
 		candidate_seleccionado= candidateServiceImpl.candidatesXID(id);
 		candidate_seleccionado.setName(candidate.getName());
 		candidate_seleccionado.setSurname(candidate.getSurname());
+		candidate_seleccionado.setPassword(candidate.getPassword());
+		candidate_seleccionado.setUsername(candidate.getUsername());
+		candidate_seleccionado.setCandidatePosition(candidate.getCandidatePosition());
+		candidate_seleccionado.setCandidateSkill(candidate.getCandidateSkill());
+		candidate_seleccionado.setPosition(candidate.getPosition());
 		candidate_actualizado = candidateServiceImpl.actualizarCandidates(candidate_seleccionado);
 		
 		System.out.println("The updated Candidate its: "+ candidate_actualizado);
