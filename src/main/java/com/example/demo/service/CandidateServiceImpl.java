@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ICandidateDAO;
 import com.example.demo.dto.Candidate;
+import com.example.demo.dto.JwtRequest;
 
 @Service
 public class CandidateServiceImpl implements ICandidateService, UserDetailsService{
@@ -73,8 +74,8 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 				new ArrayList<>());
 	}
 
-	public Candidate save(Candidate user) {
-//		System.out.println(user.getPassword());
+	public Candidate save(JwtRequest user) {
+		System.out.println(user.getPassword());
 		Candidate newUser = new Candidate();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
