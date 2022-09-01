@@ -18,4 +18,6 @@ public interface ICandidateService {
 	public void eliminarCandidates(int id); // DELETE
 	
 	public List<Candidate> findByName(String name); // Find by name
+	
+//	public Candidate findByUsername(String username); // Find by username
 }

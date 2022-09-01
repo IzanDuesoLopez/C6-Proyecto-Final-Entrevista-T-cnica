@@ -74,6 +74,7 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 	}
 
 	public Candidate save(Candidate user) {
+//		System.out.println(user.getPassword());
 		Candidate newUser = new Candidate();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

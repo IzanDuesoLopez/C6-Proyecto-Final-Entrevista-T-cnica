@@ -33,6 +33,11 @@ public class CandidateController {
 		return candidateServiceImpl.findByName(name);
 	}
 	
+//	@GetMapping("/candidates/username/{username}")
+//	public List<Candidate> listCandidatesByUsermame(@PathVariable(name="username") String username){
+//		return candidateServiceImpl.findByUsername(username);
+//	}
+	
 	@PostMapping("/candidates")
 	public Candidate guardarCandidate(@RequestBody Candidate candidate) {
 		return candidateServiceImpl.guardarCandidate(candidate);
