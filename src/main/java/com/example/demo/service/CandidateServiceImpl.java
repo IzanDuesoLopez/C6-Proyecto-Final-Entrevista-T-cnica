@@ -77,8 +77,11 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 	public Candidate save(JwtRequest user) {
 		System.out.println(user.getPassword());
 		Candidate newUser = new Candidate();
+		newUser.setName(user.getName());
+		newUser.setSurname(user.getSurname());
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setRole(user.getRole());
 		return iCandidateDAO.save(newUser);
 	}
 

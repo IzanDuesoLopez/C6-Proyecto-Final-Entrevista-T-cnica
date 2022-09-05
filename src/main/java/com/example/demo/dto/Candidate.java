@@ -29,8 +29,10 @@ public class Candidate {
 	@Column(name="password")
 	@JsonIgnore
 	private String password;
-	@Column(name="username")
+	@Column(unique=true)
 	private String username;
+	@Column(name="role")
+	private String role;
 	
 	@OneToMany
 	@JoinColumn(name="id_candidate")
@@ -50,23 +52,28 @@ public class Candidate {
 	}
 
 	/**
-	 * Constructor with parameters
 	 * @param id
 	 * @param name
 	 * @param surname
 	 * @param password
+	 * @param username
+	 * @param role
 	 * @param candidatePosition
 	 * @param candidateSkill
+	 * @param position
 	 */
-	public Candidate(int id, String name, String surname, String password, List<Candidate_position> candidatePosition,
-			List<Candidate_skill> candidateSkill) {
+	public Candidate(int id, String name, String surname, String password, String username, String role,
+			List<Candidate_position> candidatePosition, List<Candidate_skill> candidateSkill, List<Position> position) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.password = password;
+		this.username = username;
+		this.role = role;
 		this.candidatePosition = candidatePosition;
 		this.candidateSkill = candidateSkill;
+		this.position = position;
 	}
 
 	/**
@@ -175,6 +182,20 @@ public class Candidate {
 	}
 	
 	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	/**
 	 * @return the position
 	 */
 	@JsonIgnore
@@ -192,6 +213,8 @@ public class Candidate {
 
 	@Override
 	public String toString() {
-		return "Candidate [id=" + id + ", name=" + name + ", surname=" + surname + "]";
+		return "Candidate [id=" + id + ", name=" + name + ", surname=" + surname + ", password=" + password
+				+ ", username=" + username + ", role=" + role + ", candidatePosition=" + candidatePosition
+				+ ", candidateSkill=" + candidateSkill + ", position=" + position + "]";
 	}
 }
