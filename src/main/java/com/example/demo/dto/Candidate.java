@@ -1,7 +1,10 @@
 package com.example.demo.dto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +25,7 @@ public class Candidate {
 
 	// Entity variables
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="name")
@@ -33,6 +39,16 @@ public class Candidate {
 	private String username;
 	@Column(name="role")
 	private String role;
+	@Column(name="enabled")
+	private boolean enabled;
+	
+	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	    @JoinTable(
+	            name = "Users_Roles",
+	            joinColumns = @JoinColumn(name = "user_id"),
+	            inverseJoinColumns = @JoinColumn(name = "role_id")
+	            )
+	    private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany
 	@JoinColumn(name="id_candidate")
@@ -51,19 +67,23 @@ public class Candidate {
 		
 	}
 
+	
 	/**
+	 * 
 	 * @param id
 	 * @param name
 	 * @param surname
 	 * @param password
 	 * @param username
 	 * @param role
+	 * @param enabled
 	 * @param candidatePosition
 	 * @param candidateSkill
 	 * @param position
 	 */
 	public Candidate(int id, String name, String surname, String password, String username, String role,
-			List<Candidate_position> candidatePosition, List<Candidate_skill> candidateSkill, List<Position> position) {
+			boolean enabled, List<Candidate_position> candidatePosition, List<Candidate_skill> candidateSkill,
+			List<Position> position) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -71,10 +91,13 @@ public class Candidate {
 		this.password = password;
 		this.username = username;
 		this.role = role;
+		this.enabled = enabled;
 		this.candidatePosition = candidatePosition;
 		this.candidateSkill = candidateSkill;
 		this.position = position;
 	}
+
+
 
 	/**
 	 * @return the id
@@ -210,6 +233,40 @@ public class Candidate {
 	public void setPosition(List<Position> position) {
 		this.position = position;
 	}
+	
+	
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean getEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	
+
+	/**
+	 * @return the roles
+	 */
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 
 	@Override
 	public String toString() {

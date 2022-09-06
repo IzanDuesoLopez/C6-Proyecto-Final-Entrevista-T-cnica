@@ -24,7 +24,6 @@ public class CandidateController {
 	@Autowired
 	CandidateServiceImpl candidateServiceImpl;
 	
-//	@PreAuthorize("hasRole('user')")
 	@GetMapping("/candidates")
 	public List<Candidate> listarCandidates(){
 		return candidateServiceImpl.listarCandidates();
