@@ -55,8 +55,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/login", "/register").permitAll()
-				.antMatchers("/api/**").hasAuthority("ADMIN")
-//				.antMatchers(HttpMethod.DELETE, "/**").hasRole("admin")
+				.antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/candidateSkills/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAuthority("USER")
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to

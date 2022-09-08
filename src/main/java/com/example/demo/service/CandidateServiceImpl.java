@@ -80,7 +80,8 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 		newUser.setSurname(user.getSurname());
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setRole(user.getRole());
+		newUser.setEnabled(user.isEnabled());
+		newUser.setRoles(user.getRoles());
 		return iCandidateDAO.save(newUser);
 	}
 

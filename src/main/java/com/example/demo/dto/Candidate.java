@@ -37,12 +37,10 @@ public class Candidate {
 	private String password;
 	@Column(unique=true)
 	private String username;
-	@Column(name="role")
-	private String role;
 	@Column(name="enabled")
 	private boolean enabled;
 	
-	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	    @JoinTable(
 	            name = "Users_Roles",
 	            joinColumns = @JoinColumn(name = "user_id"),
@@ -67,22 +65,20 @@ public class Candidate {
 		
 	}
 
-	
 	/**
-	 * 
 	 * @param id
 	 * @param name
 	 * @param surname
 	 * @param password
 	 * @param username
-	 * @param role
 	 * @param enabled
+	 * @param roles
 	 * @param candidatePosition
 	 * @param candidateSkill
 	 * @param position
 	 */
-	public Candidate(int id, String name, String surname, String password, String username, String role,
-			boolean enabled, List<Candidate_position> candidatePosition, List<Candidate_skill> candidateSkill,
+	public Candidate(int id, String name, String surname, String password, String username, boolean enabled,
+			Set<Role> roles, List<Candidate_position> candidatePosition, List<Candidate_skill> candidateSkill,
 			List<Position> position) {
 		super();
 		this.id = id;
@@ -90,14 +86,12 @@ public class Candidate {
 		this.surname = surname;
 		this.password = password;
 		this.username = username;
-		this.role = role;
 		this.enabled = enabled;
+		this.roles = roles;
 		this.candidatePosition = candidatePosition;
 		this.candidateSkill = candidateSkill;
 		this.position = position;
 	}
-
-
 
 	/**
 	 * @return the id
@@ -203,20 +197,6 @@ public class Candidate {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	/**
-	 * @return the role
-	 */
-	public String getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	/**
 	 * @return the position
@@ -267,11 +247,11 @@ public class Candidate {
 		this.roles = roles;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Candidate [id=" + id + ", name=" + name + ", surname=" + surname + ", password=" + password
-				+ ", username=" + username + ", role=" + role + ", candidatePosition=" + candidatePosition
-				+ ", candidateSkill=" + candidateSkill + ", position=" + position + "]";
+				+ ", username=" + username + ", enabled=" + enabled + ", roles=" + roles + ", candidatePosition="
+				+ candidatePosition + ", candidateSkill=" + candidateSkill + ", position=" + position + "]";
 	}
+
 }

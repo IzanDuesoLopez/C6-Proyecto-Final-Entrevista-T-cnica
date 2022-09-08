@@ -1,9 +1,9 @@
 SET SQL_SAFE_UPDATES = 0;
 use heroku_4de1c1f87cc0fcd;
 
-insert into Candidates(name, surname, username, password, role, enabled)values('izan', 'dueso', 'izan', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 'ADMIN', 1);
-insert into Candidates(name, surname, username, password, role, enabled)values('joel', 'romero', 'joel', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 'USER', 1);
-insert into Candidates(name, surname, username, password, role, enabled)values('jose', 'martin', 'jose', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 'ADMIN', 1);
+insert into Candidates(name, surname, username, password, enabled)values('Izan', 'dueso', 'izan', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 1);
+insert into Candidates(name, surname, username, password, enabled)values('Joel', 'romero', 'joel', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 1);
+insert into Candidates(name, surname, username, password, enabled)values('Jose', 'martin', 'jose', '$2a$12$TxgCvCUaDQOszZ.naDgkJeO.P496h2xTIDuI8yi8HyMO.7hr8cT4W', 1);
 insert into Positions(title, description, id_HR_Users)values('Full-stack Developer', 'Software developer', 1);
 insert into Candidate_positions(registry_date, test_date, completion_date, result, id_candidate, id_position)values(now(), now(), now(), 10, 1, 1);
 insert into Skills(name)values('Back-end');

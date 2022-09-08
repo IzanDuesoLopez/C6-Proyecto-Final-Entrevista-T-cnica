@@ -8,7 +8,6 @@ create table Candidates (
     surname varchar(255),
     username varchar(255) unique key,
     password varchar(255),
-    role varchar(255),
     enabled int default null
 );
 

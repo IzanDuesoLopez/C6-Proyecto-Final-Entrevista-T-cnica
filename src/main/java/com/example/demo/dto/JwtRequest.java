@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class JwtRequest implements Serializable {
 
@@ -11,6 +13,8 @@ public class JwtRequest implements Serializable {
 	private String role;
 	private String name;
 	private String surname;
+	private boolean enabled;
+	private Set<Role> roles = new HashSet<>();
 	
 	//need default constructor for JSON Parsing
 	public JwtRequest()
@@ -18,12 +22,14 @@ public class JwtRequest implements Serializable {
 		
 	}
 
-	public JwtRequest(String username, String password, String role, String name, String surname) {
+	public JwtRequest(String username, String password, String role, String name, String surname, boolean enabled, Set<Role> roles) {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setRole(role);
 		this.setName(name);
 		this.setSurname(surname);
+		this.setEnabled(enabled);
+		this.setRoles(roles);
 	}
 
 	public String getUsername() {
@@ -82,6 +88,34 @@ public class JwtRequest implements Serializable {
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	/**
+	 * @return the roles
+	 */
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 	
 	
