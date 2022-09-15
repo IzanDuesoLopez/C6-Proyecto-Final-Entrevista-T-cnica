@@ -19,5 +19,5 @@ public interface ICandidateService {
 	
 	public List<Candidate> findByName(String name); // Find by name
 	
-//	public Candidate findByUsername(String username); // Find by username
+	public Candidate findByUsername(String username); // Find by username
 }

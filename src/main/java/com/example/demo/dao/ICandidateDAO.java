@@ -13,7 +13,4 @@ public interface ICandidateDAO extends JpaRepository<Candidate, Integer>{
 
 	public List<Candidate> findByName(String name);
 	public Candidate findByUsername(String username);
-	
-	@Query("SELECT c FROM Candidate c WHERE c.username = :username")
-    public User getUserByUsername(@Param("username") String username);
 }

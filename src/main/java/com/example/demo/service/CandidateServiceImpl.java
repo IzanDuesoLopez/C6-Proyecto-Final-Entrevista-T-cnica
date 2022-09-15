@@ -62,6 +62,11 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 	public List<Candidate> findByName(String name) {
 		return iCandidateDAO.findByName(name);
 	}
+	
+	@Override
+	public Candidate findByUsername(String username) {
+		return iCandidateDAO.findByUsername(username);
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
