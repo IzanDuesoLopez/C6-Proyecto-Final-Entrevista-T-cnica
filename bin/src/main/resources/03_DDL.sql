@@ -1,13 +1,28 @@
 use heroku_4de1c1f87cc0fcd;
 
-drop table if exists Candidate_skills, Candidate_positions, Positions, Candidates, Skills;
+drop table if exists Users_Roles, Roles, Candidate_skills, Candidate_positions, Positions, Candidates, Skills;
 
 create table Candidates (
 	id int auto_increment primary key,
     name varchar(255),
     surname varchar(255),
-    username varchar(255),
-    password varchar(255)
+    username varchar(255) unique key,
+    password varchar(255),
+    enabled int default null
+);
+
+create table Roles(
+	id int auto_increment primary key,
+    nombre varchar(255)
+);
+
+create table Users_Roles(
+	user_id int NOT NULL,
+    role_id int NOT NULL,
+	KEY user_fk_idx (user_id),
+	KEY role_fk_idx (role_id),
+	CONSTRAINT role_fk FOREIGN KEY (role_id) REFERENCES Roles (id),
+	CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES Candidates (id)
 );
 
 create table Positions (

@@ -58,11 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.PUT, "/api/candidateSkills/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAnyAuthority("ADMIN", "USER")
 				.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to
