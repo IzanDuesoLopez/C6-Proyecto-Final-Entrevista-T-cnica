@@ -76,7 +76,7 @@ PUT /candidatePositions/{id}
 DELETE /candidatePositions/{id}
 ```
 
-# Candidate Positions End-points  
+# Candidate Positions End-points    
 ## Get Candidate Skills list
 ```
 GET /candidateSkills
