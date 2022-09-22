@@ -4,7 +4,7 @@
 
 | Methods |
 |                         :---: |
-| GET  | POST | PUT | DELETE |
+| GET |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
