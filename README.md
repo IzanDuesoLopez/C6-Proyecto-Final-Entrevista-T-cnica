@@ -45,6 +45,39 @@ PUT /candidates/{id}
 DELETE /candidates/{id}
 ```
 
+# Candidate Positions End-points  
+## Get list of Candidate Positions  
+
+```
+GET /candidatePositions
+```  
+
+## Get Candidate Position by id  
+
+```
+GET /candidatePositions/{id}
+```
+
+## Create a new Candidate Position
+
+```
+POST /candidatePositions
+```  
+
+## Update Candidate Position by id
+
+```
+PUT /candidatePositions/{id}
+```
+
+## Delete Candidate Position by id
+
+```
+DELETE /candidatePositions/{id}
+```
+
+
+
 
 
 
