@@ -76,6 +76,9 @@ PUT /candidatePositions/{id}
 DELETE /candidatePositions/{id}
 ```
 
+# Candidate Positions End-points  
+dd
+
 
 
 
