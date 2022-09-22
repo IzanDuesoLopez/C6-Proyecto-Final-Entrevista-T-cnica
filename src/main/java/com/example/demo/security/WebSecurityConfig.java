@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example.
-		httpSecurity.csrf().disable()
+		httpSecurity.cors().and().csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/login", "/register").permitAll()
 				.antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ADMIN")
@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	
 	 @Override
 	    public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/**").allowedOrigins("https://team3-c6-project.herokuapp.com/api/candidates/username/**").allowedMethods("*");
+	        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
 	    }
 	 
 //	 @Override
