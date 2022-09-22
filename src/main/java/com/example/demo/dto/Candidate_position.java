@@ -20,11 +20,11 @@ public class Candidate_position {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="registry_date")
-	private Date registry_date;
+	private String registry_date;
 	@Column(name="test_date")
-	private Date test_date;
+	private String test_date;
 	@Column(name="completion_date")
-	private Date completion_date;
+	private String completion_date;
 	@Column(name="result")
 	private float result;
 	
@@ -50,7 +50,7 @@ public class Candidate_position {
 	 * @param candidate
 	 * @param position
 	 */
-	public Candidate_position(int id, Date registry_date, Date test_date, Date completion_date, float result,
+	public Candidate_position(int id, String registry_date, String test_date, String completion_date, float result,
 			Candidate candidate, Position position) {
 		super();
 		this.id = id;
@@ -79,42 +79,42 @@ public class Candidate_position {
 	/**
 	 * @return the registry_date
 	 */
-	public Date getRegistry_date() {
+	public String getRegistry_date() {
 		return registry_date;
 	}
 
 	/**
 	 * @param registry_date the registry_date to set
 	 */
-	public void setRegistry_date(Date registry_date) {
+	public void setRegistry_date(String registry_date) {
 		this.registry_date = registry_date;
 	}
 
 	/**
 	 * @return the test_date
 	 */
-	public Date getTest_date() {
+	public String getTest_date() {
 		return test_date;
 	}
 
 	/**
 	 * @param test_date the test_date to set
 	 */
-	public void setTest_date(Date test_date) {
+	public void setTest_date(String test_date) {
 		this.test_date = test_date;
 	}
 
 	/**
 	 * @return the completion_date
 	 */
-	public Date getCompletion_date() {
+	public String getCompletion_date() {
 		return completion_date;
 	}
 
 	/**
 	 * @param completion_date the completion_date to set
 	 */
-	public void setCompletion_date(Date completion_date) {
+	public void setCompletion_date(String completion_date) {
 		this.completion_date = completion_date;
 	}
 
