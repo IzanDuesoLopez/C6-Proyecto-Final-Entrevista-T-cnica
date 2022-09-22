@@ -77,7 +77,26 @@ DELETE /candidatePositions/{id}
 ```
 
 # Candidate Positions End-points  
-dd
+## Get Candidate Skills list
+```
+GET /candidateSkills
+```
+## Create new Candidate Skill
+```
+POST /candidateSkills
+```
+## Get Candidate Skills by id
+```
+GET /candidateSkills/{id}
+```
+## Update Candidate Skills by id
+```
+PUT /candidateSkills/{id}
+```
+## Delete Candidate Skills by id
+```
+DELETE /candidateSkills/{id}
+```
 
 
 
