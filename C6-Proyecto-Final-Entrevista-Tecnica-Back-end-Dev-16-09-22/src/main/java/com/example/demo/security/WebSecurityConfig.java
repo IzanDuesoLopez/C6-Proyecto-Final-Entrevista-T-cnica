@@ -79,6 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	
 	 @Override
 	    public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/**").allowedOrigins("https://20-09-22-clean-version.d1oz9f7x4yvhix.amplifyapp.com/**").allowedMethods("GET", "POST","PUT", "DELETE");
+	        registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
 	    }
 }
