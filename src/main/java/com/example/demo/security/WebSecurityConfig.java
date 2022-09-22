@@ -77,13 +77,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
-//	 @Override
-//	    public void addCorsMappings(CorsRegistry registry) {
-//	        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
-//	    }
-	 
 	 @Override
 	    public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/**");
+	        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
 	    }
+	 
+//	 @Override
+//	    public void addCorsMappings(CorsRegistry registry) {
+//	        registry.addMapping("/**");
+//	    }
 }
