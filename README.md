@@ -2,9 +2,9 @@
 ## API URL: https://team3-c6-project.herokuapp.com/  
 ### API End-points
 
-| First Header    Second Header |
+| Methods |
 |                         :---: |
-| First Header  | Second Header |
+| GET  | POST | PUT | DELETE |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
