@@ -20,7 +20,7 @@ import com.example.demo.dto.Candidate;
 import com.example.demo.service.CandidateServiceImpl;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "https://team3-c6-project.herokuapp.com", maxAge = 3600)
 public class JwtAuthenticationController {
 
 	@Autowired
