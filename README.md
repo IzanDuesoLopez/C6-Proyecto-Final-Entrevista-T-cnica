@@ -14,6 +14,12 @@ GET /candidates
 GET /candidates/name/{name}
 ```
 
+## Get candidates by username  
+
+```
+GET /candidates/username/{username}
+```
+
 
 
 
