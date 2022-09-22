@@ -97,6 +97,33 @@ PUT /candidateSkills/{id}
 ```
 DELETE /candidateSkills/{id}
 ```
+# Positions End-points  
+###  
+## Get positions list
+```
+GET /positions
+```
+## Get positions list by title
+```
+GET /positions/title/{title}
+```
+## Create a new position
+```
+POST /positions
+```
+## Get position by id
+```
+GET /positions/{id}
+```
+## Update position by id
+```
+PUT /positions/{id}
+```
+## Delete position by id
+```
+DELETE /positions/{id}
+```
+
 
 
 
