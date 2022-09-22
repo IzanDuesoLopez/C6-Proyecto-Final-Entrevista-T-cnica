@@ -122,6 +122,31 @@ PUT /positions/{id}
 ```
 DELETE /positions/{id}
 ```
+# Skills End-points
+## Get Skill list
+```
+GET /skills
+```
+## Get Skill list by name
+```
+GET /skills/name/{name}
+```
+## Create a new Skill
+```
+POST /skills
+```
+## Get Skills by id
+```
+GET /skills/{id}
+```
+## Update Skills by id
+```
+PUT /skills/{id}
+```
+## Delete Skills by id
+```
+DELETE /skills/{id}
+```
 
 
 
