@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 				.authorizeRequests().antMatchers("/login", "/register").permitAll()
 				.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
 				.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/candidatePositions/**").hasAnyAuthority("ADMIN", "USER")
+				.antMatchers(HttpMethod.DELETE, "/api/candidatePositions/**").hasAuthority("USER")
 				.antMatchers(HttpMethod.PUT, "/api/candidateSkills/**").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAnyAuthority("ADMIN", "USER")
 				.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
