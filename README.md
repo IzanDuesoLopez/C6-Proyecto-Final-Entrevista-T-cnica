@@ -20,6 +20,12 @@ GET /candidates/name/{name}
 GET /candidates/username/{username}
 ```
 
+## Create a new candidate  
+
+```
+POST /candidates  
+```
+
 
 
 
