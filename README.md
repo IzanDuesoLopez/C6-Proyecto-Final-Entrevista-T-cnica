@@ -1,10 +1,10 @@
 # T-Jobs
-## API URL: https://team3-c6-project.herokuapp.com/  
-### API End-points
+## API URL: https://team3-c6-project.herokuapp.com/api  
 
-| Methods          dd           |
-|             :---:             |
-| First Header  | Second Header |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+## Get list of candidates  
+### Method request
+```
+GET /candidates
+```
+
 
