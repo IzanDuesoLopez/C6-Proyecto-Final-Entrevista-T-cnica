@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.Candidate_position;
 import com.example.demo.service.CandidatePositionServiceImpl;
 
-@CrossOrigin(origins = "https://team3-c6-project.herokuapp.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CandidatePositionController {

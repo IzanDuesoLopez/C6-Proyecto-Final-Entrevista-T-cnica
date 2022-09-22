@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.Skill;
 import com.example.demo.service.SkillServiceImpl;
 
-@CrossOrigin(origins = "https://team3-c6-project.herokuapp.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class SkillController {

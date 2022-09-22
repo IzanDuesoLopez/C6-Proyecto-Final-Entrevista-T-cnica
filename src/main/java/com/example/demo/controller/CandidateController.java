@@ -18,7 +18,6 @@ import com.example.demo.service.CandidateServiceImpl;
 
 import com.example.demo.dto.Candidate;
 
-@CrossOrigin(origins = "https://team3-c6-project.herokuapp.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CandidateController {
