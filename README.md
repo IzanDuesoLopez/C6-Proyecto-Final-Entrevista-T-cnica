@@ -1,3 +1,6 @@
-# C6-Proyecto-Final-Entrevista-Tecnica
+### API URL: https://team3-c6-project.herokuapp.com/  
+## API End-points:
+### Candidate
+```
 
-# https://team3-c6-project.herokuapp.com/
+```
