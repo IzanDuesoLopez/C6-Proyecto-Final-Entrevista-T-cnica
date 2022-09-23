@@ -183,6 +183,7 @@ Example: PUT /skills/11 @RequestBody {"name":"angular"}
 DELETE /skills/{id}
 Example: DELETE /skills/11
 ```
+![image](https://user-images.githubusercontent.com/108723551/191904146-56e1f136-f6ab-424b-8dd2-e4c6e6f7f9a6.png)
 
 
 
