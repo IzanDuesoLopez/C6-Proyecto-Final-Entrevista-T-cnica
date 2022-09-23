@@ -22,52 +22,81 @@ import com.example.demo.dto.JwtRequest;
 @Service
 public class CandidateServiceImpl implements ICandidateService, UserDetailsService{
 
+	/**
+	 * Variables autowired
+	 */
 	@Autowired
 	ICandidateDAO iCandidateDAO;
 	
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 	
+	/**
+	 * @param iCandidateDAO
+	 */
 	public CandidateServiceImpl(ICandidateDAO iCandidateDAO) {
 		this.iCandidateDAO = iCandidateDAO;
 	}
 	
+	/**
+	 * Get all
+	 */
 	@Override
 	public List<Candidate> listarCandidates() {
 		return iCandidateDAO.findAll();
 	}
 
+	/**
+	 * Create
+	 */
 	@Override
 	public Candidate guardarCandidate(Candidate candidates) {
 		return iCandidateDAO.save(candidates);
 	}
-
+	
+	/**
+	 * Get by id
+	 */
 	@Override
 	public Candidate candidatesXID(int id) {
 		return iCandidateDAO.findById(id).get();
 	}
 
+	/**
+	 * Update
+	 */
 	@Override
 	public Candidate actualizarCandidates(Candidate candidates) {
 		return iCandidateDAO.save(candidates);
 	}
 
+	/**
+	 * Delete
+	 */
 	@Override
 	public void eliminarCandidates(int id) {
 		iCandidateDAO.deleteById(id);
-		
 	}
 
+	/**
+	 * Find by name
+	 */
 	@Override
 	public List<Candidate> findByName(String name) {
 		return iCandidateDAO.findByName(name);
 	}
 	
+	/**
+	 * Find by username
+	 */
 	@Override
 	public Candidate findByUsername(String username) {
 		return iCandidateDAO.findByUsername(username);
 	}
 
+	/**
+	 * Search if the user exists, if not, returns an exception, if yes, return the data
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -78,6 +107,11 @@ public class CandidateServiceImpl implements ICandidateService, UserDetailsServi
 		return new MyUserDetails(user);
 	}
 
+	/**
+	 * Receives by paramater the data from a request, creates a newUser and saves it as a new candidate
+	 * @param user
+	 * @return
+	 */
 	public Candidate save(JwtRequest user) {
 		System.out.println(user.getPassword());
 		Candidate newUser = new Candidate();

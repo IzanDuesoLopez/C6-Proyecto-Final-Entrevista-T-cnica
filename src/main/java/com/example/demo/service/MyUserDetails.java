@@ -11,12 +11,20 @@ import com.example.demo.dto.Role;
  
 public class MyUserDetails implements UserDetails {
  
+	// Variables
     private Candidate candidate;
-     
+    
+    /**
+     * Constructor
+     * @param candidate
+     */
     public MyUserDetails(Candidate candidate) {
         this.candidate = candidate;
     }
- 
+    
+    /**
+     * Returns the roles of this user
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<Role> roles = candidate.getRoles();

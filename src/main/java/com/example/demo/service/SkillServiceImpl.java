@@ -11,34 +11,55 @@ import com.example.demo.dto.Skill;
 @Service
 public class SkillServiceImpl implements ISkillService{
 
+	/**
+	 * Variables autowired
+	 */
 	@Autowired
 	ISkillDAO iSkillDAO;
 	
+	/**
+	 * Get all
+	 */
 	@Override
 	public List<Skill> listarSkills() {
 		return iSkillDAO.findAll();
 	}
 
+	/**
+	 * Create
+	 */
 	@Override
 	public Skill guardarSkill(Skill skills) {
 		return iSkillDAO.save(skills);
 	}
 
+	/**
+	 * Finds by id
+	 */
 	@Override
 	public Skill skillsXID(int id) {
 		return iSkillDAO.findById(id).get();
 	}
 
+	/**
+	 * Update
+	 */
 	@Override
 	public Skill actualizarSkills(Skill skills) {
 		return iSkillDAO.save(skills);
 	}
 
+	/**
+	 * Delete
+	 */
 	@Override
 	public void eliminarSkills(int id) {
 		iSkillDAO.deleteById(id);
 	}
 
+	/**
+	 * Finds by name
+	 */
 	@Override
 	public List<Skill> findByName(String name) {
 		return iSkillDAO.findByName(name);
