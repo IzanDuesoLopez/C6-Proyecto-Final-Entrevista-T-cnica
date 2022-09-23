@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -104,11 +105,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+	    List<String> allowedOriginsUrl = new ArrayList<>();
+	    allowedOriginsUrl.add("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com");
+	    allowedOriginsUrl.add("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com");
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(true);
+	    config.setAllowedOrigins(allowedOriginsUrl);
+	    config.addAllowedHeader("*");
+	    config.addAllowedMethod("*");
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", config);
+	    return source;
 	}
 }
