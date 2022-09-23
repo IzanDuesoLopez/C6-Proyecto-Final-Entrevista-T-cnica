@@ -24,9 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// Class variables
 	@Autowired
@@ -71,10 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable()
-				// We authorize for everyone /login and /register end-points
+		httpSecurity.cors().and().csrf().disable()
 				.authorizeRequests().antMatchers("/login", "/register").permitAll()
-				// We grant acces to the following users and the following end-points
 				.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
 				.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.DELETE, "/api/candidatePositions/**").hasAnyAuthority("ADMIN", "USER")
@@ -86,20 +82,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 				.anyRequest().authenticated().and().
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		// We add a filter to validate every request with the jwt
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	/**
 	 * Cors-mapping to grand access for the allowed methods
 	 */
-	 @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-		 registry.addMapping("/**")
-		 .allowedMethods("*")
-		 .allowedOrigins("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com")
-		 .allowedHeaders("*")
-		 .exposedHeaders("*");
-	    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		return source;
+	}
 
 }
