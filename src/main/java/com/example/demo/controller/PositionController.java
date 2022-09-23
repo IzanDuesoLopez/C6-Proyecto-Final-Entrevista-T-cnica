@@ -20,24 +20,46 @@ import com.example.demo.service.PositionServiceImpl;
 @RequestMapping("/api")
 public class PositionController {
 
+	/**
+	 * Variables autowired
+	 */
 	@Autowired
 	PositionServiceImpl positionServiceImpl;
 	
+	/**
+	 * GET /positions
+	 * @return
+	 */
 	@GetMapping("/positions")
 	public List<Position> listarPositions(){
 		return positionServiceImpl.listarPositions();
 	}
 	
+	/**
+	 * GET /positions/title/{title}
+	 * @param title
+	 * @return
+	 */
 	@GetMapping("/positions/title/{title}")
 	public List<Position> listPositionByTitle(@PathVariable(name="title") String title){
 		return positionServiceImpl.findByTitle(title);
 	}
 	
+	/**
+	 * POST /positions
+	 * @param position
+	 * @return
+	 */
 	@PostMapping("/positions")
 	public Position guardarPosition(@RequestBody Position position) {
 		return positionServiceImpl.guardarPosition(position);
 	}
 	
+	/**
+	 * GET /positions/{id}
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/positions/{id}")
 	public Position positionXID(@PathVariable(name="id") int id) {
 		
@@ -47,6 +69,12 @@ public class PositionController {
 		return position_xid;
 	}
 
+	/**
+	 * PUT /positions/{id}
+	 * @param id
+	 * @param position
+	 * @return
+	 */
 	@PutMapping("/positions/{id}")
 	public Position actualizarPositions(@PathVariable(name="id")int id,@RequestBody Position position) {
 		
@@ -64,6 +92,10 @@ public class PositionController {
 		return position_actualizado;
 	}
 	
+	/**
+	 * DELETE /positions/{id}
+	 * @param id
+	 */
 	@DeleteMapping("/positions/{id}")
 	public void eliminarPositions(@PathVariable(name="id")int id) {
 		positionServiceImpl.eliminarPositions(id);

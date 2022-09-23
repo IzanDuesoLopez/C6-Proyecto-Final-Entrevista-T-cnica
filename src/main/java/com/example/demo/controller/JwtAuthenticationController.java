@@ -23,6 +23,9 @@ import com.example.demo.service.CandidateServiceImpl;
 @CrossOrigin
 public class JwtAuthenticationController {
 
+	/**
+	 * Variables autowired
+	 */
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -32,6 +35,12 @@ public class JwtAuthenticationController {
 	@Autowired
 	private CandidateServiceImpl userDetailsService;
 
+	/**
+	 * REQUEST MAPPING, POST /login
+	 * @param authenticationRequest
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -44,13 +53,24 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
+	/**
+	 * REQUEST MAPPING, POST /register
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody JwtRequest user) throws Exception {
 		
-		System.out.println("SAVEEEEEEEEEEEEEEEE- " + user.getPassword());
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
+	/**
+	 * Authenticates that the username, password and token are valid, otherwise throws an exception
+	 * @param username
+	 * @param password
+	 * @throws Exception
+	 */
 	private void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

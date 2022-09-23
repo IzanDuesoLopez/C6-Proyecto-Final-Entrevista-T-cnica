@@ -20,19 +20,36 @@ import com.example.demo.service.CandidateSkillServiceImpl;
 @RequestMapping("/api")
 public class CandidateSkillController {
 
+	/**
+	 * Variables autowired
+	 */
 	@Autowired
 	CandidateSkillServiceImpl candidateSkillServiceImpl;
 	
+	/**
+	 * GET /candidateSkills
+	 * @return
+	 */
 	@GetMapping("/candidateSkills")
 	public List<Candidate_skill> listarCandidateSkills(){
 		return candidateSkillServiceImpl.listarCandidateSkills();
 	}
 	
+	/**
+	 * POST /candidateSkills
+	 * @param candidateSkill
+	 * @return
+	 */
 	@PostMapping("/candidateSkills")
 	public Candidate_skill guardarCandidateSkill(@RequestBody Candidate_skill candidateSkill) {
 		return candidateSkillServiceImpl.guardarCandidateSkill(candidateSkill);
 	}
 	
+	/**
+	 * GET /candidateSkills/{id}
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/candidateSkills/{id}")
 	public Candidate_skill candidateSkillXID(@PathVariable(name="id") int id) {
 		
@@ -42,6 +59,12 @@ public class CandidateSkillController {
 		return candidateSkill_xid;
 	}
 
+	/**
+	 * PUT /candidateSkills/{id}
+	 * @param id
+	 * @param candidateSkill
+	 * @return
+	 */
 	@PutMapping("/candidateSkills/{id}")
 	public Candidate_skill actualizarCandidateSkills(@PathVariable(name="id")int id,@RequestBody Candidate_skill candidateSkill) {
 		
@@ -60,6 +83,10 @@ public class CandidateSkillController {
 		return candidateSkill_actualizado;
 	}
 	
+	/**
+	 * DELETE /candidateSkills/{id}
+	 * @param id
+	 */
 	@DeleteMapping("/candidateSkills/{id}")
 	public void eliminarCandidateSkills(@PathVariable(name="id")int id) {
 		candidateSkillServiceImpl.eliminarCandidateSkills(id);
