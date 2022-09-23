@@ -20,36 +20,19 @@ import com.example.demo.service.CandidatePositionServiceImpl;
 @RequestMapping("/api")
 public class CandidatePositionController {
 
-	/**
-	 * Variables autowired
-	 */
 	@Autowired
 	CandidatePositionServiceImpl candidatePositionServiceImpl;
 	
-	/**
-	 * GET /candidatePositions
-	 * @return
-	 */
 	@GetMapping("/candidatePositions")
 	public List<Candidate_position> listarCandidatePositions(){
 		return candidatePositionServiceImpl.listarCandidatePositions();
 	}
 	
-	/**
-	 * POST /candidatePositions
-	 * @param candidatePosition
-	 * @return
-	 */
 	@PostMapping("/candidatePositions")
 	public Candidate_position guardarCandidatePosition(@RequestBody Candidate_position candidatePosition) {
 		return candidatePositionServiceImpl.guardarCandidatePosition(candidatePosition);
 	}
 	
-	/**
-	 * GET /candidatePositions/{id}
-	 * @param id
-	 * @return
-	 */
 	@GetMapping("/candidatePositions/{id}")
 	public Candidate_position candidatePositionXID(@PathVariable(name="id") int id) {
 		
@@ -59,12 +42,6 @@ public class CandidatePositionController {
 		return candidatePosition_xid;
 	}
 
-	/**
-	 * PUT /candidatePositions/{id}
-	 * @param id
-	 * @param candidatePosition
-	 * @return
-	 */
 	@PutMapping("/candidatePositions/{id}")
 	public Candidate_position actualizarCandidatePositions(@PathVariable(name="id")int id,@RequestBody Candidate_position candidatePosition) {
 		
@@ -85,10 +62,6 @@ public class CandidatePositionController {
 		return candidatePosition_actualizado;
 	}
 	
-	/**
-	 * DELETE /candidatePositions/{id}
-	 * @param id
-	 */
 	@DeleteMapping("/candidatePositions/{id}")
 	public void eliminarCandidatePositions(@PathVariable(name="id")int id) {
 		candidatePositionServiceImpl.eliminarCandidatePositions(id);

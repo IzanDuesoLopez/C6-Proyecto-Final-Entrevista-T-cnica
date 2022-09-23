@@ -21,57 +21,30 @@ import com.example.demo.dto.Candidate;
 @RestController
 @RequestMapping("/api")
 public class CandidateController {
-	
-	/**
-	 * Variables autowired
-	 */
+
 	@Autowired
 	CandidateServiceImpl candidateServiceImpl;
 	
-	/**
-	 * GET /candidates
-	 * @return
-	 */
 	@GetMapping("/candidates")
 	public List<Candidate> listarCandidates(){
 		return candidateServiceImpl.listarCandidates();
 	}
 	
-	/**
-	 * GET /candidates/name/{name}
-	 * @param name
-	 * @return
-	 */
 	@GetMapping("/candidates/name/{name}")
 	public List<Candidate> listCandidatesByName(@PathVariable(name="name") String name){
 		return candidateServiceImpl.findByName(name);
 	}
 	
-	/**
-	 * GET /candidates/username/{username}
-	 * @param username
-	 * @return
-	 */
 	@GetMapping("/candidates/username/{username}")
 	public Candidate listCandidatesByUsermame(@PathVariable(name="username") String username){
 		return candidateServiceImpl.findByUsername(username);
 	}
 	
-	/**
-	 * POST /candidates
-	 * @param candidate
-	 * @return
-	 */
 	@PostMapping("/candidates")
 	public Candidate guardarCandidate(@RequestBody Candidate candidate) {
 		return candidateServiceImpl.guardarCandidate(candidate);
 	}
 	
-	/**
-	 * GET /candidates/{id}
-	 * @param id
-	 * @return
-	 */
 	@GetMapping("/candidates/{id}")
 	public Candidate candidateXID(@PathVariable(name="id") int id) {
 		
@@ -81,12 +54,6 @@ public class CandidateController {
 		return candidate_xid;
 	}
 
-	/**
-	 * PUT /candidates/{id}
-	 * @param id
-	 * @param candidate
-	 * @return
-	 */
 	@PutMapping("/candidates/{id}")
 	public Candidate actualizarCandidates(@PathVariable(name="id")int id,@RequestBody Candidate candidate) {
 		
@@ -108,10 +75,6 @@ public class CandidateController {
 		return candidate_actualizado;
 	}
 	
-	/**
-	 * DELETE /candidates/{id}
-	 * @param id
-	 */
 	@DeleteMapping("/candidates/{id}")
 	public void eliminarCandidates(@PathVariable(name="id")int id) {
 		candidateServiceImpl.eliminarCandidates(id);

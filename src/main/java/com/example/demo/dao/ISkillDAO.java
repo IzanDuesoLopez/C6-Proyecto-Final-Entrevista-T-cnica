@@ -8,11 +8,6 @@ import com.example.demo.dto.Skill;
 
 public interface ISkillDAO extends JpaRepository<Skill, Integer>{
 
-	/**
-	 * Searchs by the name field and returns a list of skills
-	 * @param name
-	 * @return
-	 */
 	public List<Skill> findByName(String name);
 	
 }

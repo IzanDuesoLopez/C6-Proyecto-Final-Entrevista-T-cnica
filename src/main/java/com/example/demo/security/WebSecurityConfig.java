@@ -24,10 +24,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	// Class variables
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -37,53 +36,65 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
+	/**
+	 * We use the passwordEncoder for encrypting
+	 * @param auth
+	 * @throws Exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// configure AuthenticationManager so that it knows from where to load
-		// user for matching credentials
-		// Use BCryptPasswordEncoder
 		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
+	/**
+	 * Bean for BCryptPasswordEncoder
+	 * @return
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * Authentication manager, that returns the bean from auth
+	 */
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
 
+	/**
+	 * We configure the following end-points for acces. Users can't acces all the end-points.
+	 */
 	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		// We don't need CSRF for this example.
-		httpSecurity.csrf().disable()
-				// dont authenticate this particular request
-				.authorizeRequests().antMatchers("/login", "/register").permitAll()
-				.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
-				.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/candidatePositions/**").hasAnyAuthority("ADMIN", "USER")
-				.antMatchers(HttpMethod.PUT, "/api/candidateSkills/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAnyAuthority("ADMIN", "USER")
-				.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
-				// all other requests need to be authenticated
-				.anyRequest().authenticated().and().
-				// make sure we use stateless session; session won't be used to
-				// store user's state.
-				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		// Add a filter to validate the tokens with every request
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	protected void configure(HttpSecurity httpSecurity) throws Exception {	
+		httpSecurity
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+			.cors().and()
+			.csrf().disable()
+			.authorizeRequests().antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+			.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers(HttpMethod.PUT, "/api/candidatePositions/**").hasAuthority("ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/api/candidatePositions/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers(HttpMethod.PUT, "/api/candidateSkills/**").hasAuthority("ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
+			.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
+			.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
+			.anyRequest().authenticated().and()
+			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	 @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-		 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
-
-	    }
-
+	/**
+	 * Cors-mapping to grand access for the allowed methods
+	 */
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		return source;
+	}
 }
