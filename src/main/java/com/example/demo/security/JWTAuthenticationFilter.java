@@ -31,12 +31,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+	// AuthenticationManager object
 	private AuthenticationManager authenticationManager;
 
+	/**
+	 * JWT Authentication filter constructor
+	 * @param authenticationManager
+	 */
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
 
+	/**
+	 * Try to authenticate in back-end
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
@@ -50,6 +58,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		}
 	}
 
+	/**
+	 * Method that builds the JWT with Jwts.builder()
+	 */
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication auth) throws IOException, ServletException {
@@ -58,8 +69,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.setSubject(((User)auth.getPrincipal()).getUsername())
 				.setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SUPER_SECRET_KEY).compact();
-		response.addHeader(HEADER_AUTHORIZACION_KEY, TOKEN_BEARER_PREFIX + " " + token);//devuelve token por cabecera
-		response.getWriter().write("{\"token\": \"" + token + "\"}");//devuelve token por body
+		response.addHeader(HEADER_AUTHORIZACION_KEY, TOKEN_BEARER_PREFIX + " " + token); // Return token by header
+		response.getWriter().write("{\"token\": \"" + token + "\"}"); // Returns token by body
 		System.out.println(response.getHeader(HEADER_AUTHORIZACION_KEY));
 	
 	}

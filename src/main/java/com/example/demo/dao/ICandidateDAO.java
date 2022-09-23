@@ -11,17 +11,6 @@ import com.example.demo.dto.Candidate;
 
 public interface ICandidateDAO extends JpaRepository<Candidate, Integer>{
 
-	/**
-	 * Searchs by the name field and returns a list of candidates
-	 * @param name
-	 * @return
-	 */
 	public List<Candidate> findByName(String name);
-	
-	/**
-	 * Search a candidate by the username field and returns its data
-	 * @param username
-	 * @return
-	 */
 	public Candidate findByUsername(String username);
 }

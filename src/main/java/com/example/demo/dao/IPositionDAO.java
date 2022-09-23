@@ -8,11 +8,6 @@ import com.example.demo.dto.Position;
 
 public interface IPositionDAO extends JpaRepository<Position, Integer>{
 
-	/**
-	 * Searchs by the title field and returns a list of positions
-	 * @param title
-	 * @return
-	 */
 	public List<Position> findByTitle(String title);
 	
 }

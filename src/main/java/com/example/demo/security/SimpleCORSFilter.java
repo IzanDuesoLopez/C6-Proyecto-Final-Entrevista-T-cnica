@@ -16,12 +16,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleCORSFilter implements Filter {
 
+	// Logger
 	private final Logger log = LoggerFactory.getLogger(SimpleCORSFilter.class);
 
+	// Log info
 	public SimpleCORSFilter() {
 		log.info("SimpleCORSFilter init");
 	}
 
+	/**
+	 * We filter the Acces-Control allowing the following origins, credentials, methods, max-age and headers.
+	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
@@ -39,10 +44,16 @@ public class SimpleCORSFilter implements Filter {
 		chain.doFilter(req, res);
 	}
 
+	/**
+	 * We initialize the config
+	 */
 	@Override
 	public void init(FilterConfig filterConfig) {
 	}
 
+	/**
+	 * Method to destroy the instance
+	 */
 	@Override
 	public void destroy() {
 	}

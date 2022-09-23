@@ -20,46 +20,24 @@ import com.example.demo.service.SkillServiceImpl;
 @RequestMapping("/api")
 public class SkillController {
 
-	/**
-	 * Variables autowired
-	 */
 	@Autowired
 	SkillServiceImpl skillServiceImpl;
 	
-	/**
-	 * GET /skills
-	 * @return
-	 */
 	@GetMapping("/skills")
 	public List<Skill> listarSkills(){
 		return skillServiceImpl.listarSkills();
 	}
 	
-	/**
-	 * GET /skills/name/{name}
-	 * @param name
-	 * @return
-	 */
 	@GetMapping("/skills/name/{name}")
 	public List<Skill> listSkillsByName(@PathVariable(name="name") String name){
 		return skillServiceImpl.findByName(name);
 	}
 	
-	/**
-	 * POST /skills
-	 * @param skill
-	 * @return
-	 */
 	@PostMapping("/skills")
 	public Skill guardarSkill(@RequestBody Skill skill) {
 		return skillServiceImpl.guardarSkill(skill);
 	}
 	
-	/**
-	 * GET /skills/{id}
-	 * @param id
-	 * @return
-	 */
 	@GetMapping("/skills/{id}")
 	public Skill skillXID(@PathVariable(name="id") int id) {
 		
@@ -69,12 +47,6 @@ public class SkillController {
 		return skill_xid;
 	}
 
-	/**
-	 * PUT /skills/{id}
-	 * @param id
-	 * @param skill
-	 * @return
-	 */
 	@PutMapping("/skills/{id}")
 	public Skill actualizarSkills(@PathVariable(name="id")int id,@RequestBody Skill skill) {
 		
@@ -90,10 +62,6 @@ public class SkillController {
 		return skill_actualizado;
 	}
 	
-	/**
-	 * DELETE /skills/{id}
-	 * @param id
-	 */
 	@DeleteMapping("/skills/{id}")
 	public void eliminarSkills(@PathVariable(name="id")int id) {
 		skillServiceImpl.eliminarSkills(id);
