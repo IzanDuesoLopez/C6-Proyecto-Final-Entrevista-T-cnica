@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -82,9 +83,7 @@ public class SkillController {
 		responseHeaders.set("Access-Control-Allow-Headers", "*");
 		
 		
-		return ResponseEntity.ok()
-			      .headers(responseHeaders)
-			      .body(skill_actualizado);
+		return new ResponseEntity(skill_actualizado, responseHeaders, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/skills/{id}")
