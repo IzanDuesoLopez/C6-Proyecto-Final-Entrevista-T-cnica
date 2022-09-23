@@ -23,7 +23,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableWebSecurity
 @EnableWebMvc
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
 	// Class variables
@@ -38,7 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 
 	/**
 	 * We use the passwordEncoder for encrypting
-	 * 
 	 * @param auth
 	 * @throws Exception
 	 */
@@ -49,7 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 
 	/**
 	 * Bean for BCryptPasswordEncoder
-	 * 
 	 * @return
 	 */
 	@Bean
@@ -67,8 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	}
 
 	/**
-	 * We configure the following end-points for acces. Users can't acces all the
-	 * end-points.
+	 * We configure the following end-points for acces. Users can't acces all the end-points.
 	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -83,16 +82,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 				.antMatchers(HttpMethod.DELETE, "/api/candidateSkills/**").hasAnyAuthority("ADMIN", "USER")
 				.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
 				.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER").anyRequest()
-				.authenticated().and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
+				.anyRequest().authenticated().and().
+				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// We add a filter to validate every request with the jwt
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+	
+	/**
+	 * Cors-mapping to grand access for the allowed methods
+	 */
+	 @Override
+	    public void addCorsMappings(CorsRegistry registry) {
+		 registry.addMapping("/api/**")
+		 .allowedMethods("*")
+		 .allowedHeaders("*")
+		 .exposedHeaders("*");
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("*");
-	}
+	    }
 
 }
