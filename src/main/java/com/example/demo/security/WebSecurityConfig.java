@@ -86,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
 			.anyRequest().authenticated()
 			.and().headers()
-            // the headers you want here. This solved all my CORS problems! 
+            // the headers you want here. This solved all my CORS problems! dddS
             .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
             .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "*"))
             .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
