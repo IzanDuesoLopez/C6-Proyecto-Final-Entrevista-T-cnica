@@ -28,6 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
+	// Class variables
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -37,25 +38,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
+	/**
+	 * We use the passwordEncoder for encrypting
+	 * @param auth
+	 * @throws Exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// configure AuthenticationManager so that it knows from where to load
-		// user for matching credentials
-		// Use BCryptPasswordEncoder
 		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
+	/**
+	 * Bean for BCryptPasswordEncoder
+	 * @return
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * Authentication manager, that returns the bean from auth
+	 */
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
 
+	/**
+	 * We configure the following end-points for acces. Users can't acces all the end-points.
+	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example.
@@ -80,10 +93,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	 @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-		 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
-
-	    }
+	/**
+	 * Cors-mapping to grand access for the allowed methods
+	 */
+	@Override
+    public void addCorsMappings(CorsRegistry registry) {
+	 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
+    }
 
 }
