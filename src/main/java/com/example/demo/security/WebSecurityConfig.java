@@ -1,5 +1,7 @@
 package com.example.demo.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,9 +72,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {	
+		
+		 CorsConfiguration corsConfiguration = new CorsConfiguration();
+	        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+	        corsConfiguration.setAllowedOrigins(List.of("*"));
+	        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
+	        corsConfiguration.setAllowCredentials(true);
+	        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+		
+		
+		
 		httpSecurity
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
+			.cors().configurationSource(request -> corsConfiguration).and()
 			.csrf().disable()
 			.authorizeRequests().antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
 			.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
