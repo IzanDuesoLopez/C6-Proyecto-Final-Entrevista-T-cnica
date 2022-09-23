@@ -84,15 +84,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
-			.anyRequest().authenticated().and()
-			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+			.anyRequest().authenticated()
 			.and().headers()
             // the headers you want here. This solved all my CORS problems! 
-            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
-            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE"))
-            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
-            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
-            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));;
+            .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*")).and()
+			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
 	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
