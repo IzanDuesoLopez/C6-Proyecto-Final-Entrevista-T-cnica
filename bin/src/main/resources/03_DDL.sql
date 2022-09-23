@@ -36,9 +36,9 @@ create table Positions (
 
 create table Candidate_positions (
 	id int auto_increment primary key,
-    registry_date date,
-    test_date date,
-    completion_date date,
+    registry_date varchar(255),
+    test_date varchar(255),
+    completion_date varchar(255),
     result float,
     id_candidate int,
     id_position int,
