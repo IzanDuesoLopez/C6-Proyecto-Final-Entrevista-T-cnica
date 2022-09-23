@@ -75,15 +75,15 @@ public class SkillController {
 		
 		System.out.println("The updated Skill its: "+ skill_actualizado);
 		
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.set("Access-Control-Allow-Origin", "*");
-		responseHeaders.set("Access-Control-Allow-Methods", "*");
-		responseHeaders.set("Access-Control-Max-Age", "3600");
-		responseHeaders.set("Access-Control-Allow-Credentials", "true");
-		responseHeaders.set("Access-Control-Allow-Headers", "*");
+//		HttpHeaders responseHeaders = new HttpHeaders();
+//		responseHeaders.set("Access-Control-Allow-Origin", "*");
+//		responseHeaders.set("Access-Control-Allow-Methods", "*");
+//		responseHeaders.set("Access-Control-Max-Age", "3600");
+//		responseHeaders.set("Access-Control-Allow-Credentials", "true");
+//		responseHeaders.set("Access-Control-Allow-Headers", "*");
 		
 		
-		return new ResponseEntity(skill_actualizado, responseHeaders, HttpStatus.OK);
+		return ResponseEntity.status(HttpStatus.OK).body(skill_actualizado);
 	}
 	
 	@DeleteMapping("/skills/{id}")
