@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * We use the passwordEncoder for encrypting
 	 * @param auth
-	 * @throws Exception
+	 * @throws Exceptions
 	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
