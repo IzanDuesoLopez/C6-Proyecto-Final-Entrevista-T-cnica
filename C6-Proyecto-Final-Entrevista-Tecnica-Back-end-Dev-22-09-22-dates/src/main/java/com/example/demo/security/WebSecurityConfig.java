@@ -23,9 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebSecurity
 @EnableWebMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
 	// Class variables
@@ -91,4 +89,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 		// We add a filter to validate every request with the jwt
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+
+	/**
+	 * Cors-mapping to grand access for the allowed methods
+	 */
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**").allowedOrigins("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com/**");
+	}
+
 }
