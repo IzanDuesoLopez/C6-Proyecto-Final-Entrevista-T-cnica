@@ -83,14 +83,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/api/positions").hasAuthority("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/positions/**").hasAuthority("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/skills/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers(HttpMethod.PUT, "/**").permitAll()
 			.anyRequest().authenticated().and()
-			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
 	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	/**
-	 * Cors-mapping to grand access for the allowed methodss
+	 * Cors-mapping to grand access for the allowed methods
 	 */
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
