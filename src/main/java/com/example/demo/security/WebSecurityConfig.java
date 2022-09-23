@@ -107,7 +107,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	CorsConfigurationSource corsConfigurationSource() {
 	    List<String> allowedOriginsUrl = new ArrayList<>();
 	    allowedOriginsUrl.add("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com");
-	    allowedOriginsUrl.add("https://deploy-23-09-22.d3o4e5d59xwnf7.amplifyapp.com");
 	    CorsConfiguration config = new CorsConfiguration();
 	    config.setAllowCredentials(true);
 	    config.setAllowedOrigins(allowedOriginsUrl);
